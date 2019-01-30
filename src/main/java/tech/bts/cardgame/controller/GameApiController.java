@@ -53,4 +53,5 @@ public class GameApiController {
         gameUser.setGameId(gameId);
         return gameService.pickCard(gameUser);
     }
+
 }
