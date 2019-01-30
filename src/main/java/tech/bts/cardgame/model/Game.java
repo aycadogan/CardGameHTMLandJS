@@ -31,6 +31,10 @@ public class Game {
         return state;
     }
 
+    public Map<String, Player> getPlayersByUsername() {
+        return playersByUsername;
+    }
+
     public void join(String username) {
 
         if (state != State.OPEN) {

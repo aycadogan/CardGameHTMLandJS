@@ -12,6 +12,10 @@ public class Player {
         this.pickedCard = null;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getDiscardCount() {
         return discardCount;
     }
