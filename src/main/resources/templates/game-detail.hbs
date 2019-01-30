@@ -1,0 +1,12 @@
+<a href="/games">Go back to games</a>
+<h1>Game {{game.id}} </h1>
+<p>State: {{game.state}}</p>
+<p>Players: {{game.playerNames}}</p>
+
+{{#if gameIsOpen}}
+    <form action="/games/join" method="post">
+        <input type="text">
+        Username: <input type="text" name="username">
+        <button>Join game</button>
+    </form>
+{{/if}}
