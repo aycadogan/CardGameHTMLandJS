@@ -1,8 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const gameId = urlParams.get('gameId');
 
-//const oneGame = fetch("http://localhost:8080/api/games"+gameId); //For: /api/games/#
-const gamesPromise = axios.get("http://localhost:8080/api/games"+gameId);
+//const oneGame = fetch("http://localhost:8080/api/games/"+gameId); //For: /api/games/#
+//const gamesPromise =
 /**
 oneGame
 .then(x => x.json())
@@ -19,18 +19,31 @@ player.innerHTML = oneGame.username;
 info.appendChild(player);
 });
 */
-gamesPromise
+//gamesPromise
+axios.get("/api/games/"+gameId)
 .then(function(response) {
 
-    const games = response.data;
-    const infGame = document.getElementById("infGame");
-    for (let game of games) {
-
-        const p = document.createElement("p");
-        p.textContent = `Game ${game.id} is ${game.state}`;
-        infGame.appendChild(p);
-    }
-
+    const game = response.data;
+    displayGame(game);
+})
+// If the call is not working, you will get error from here
+.catch(function (error) {
+    displayError(error);
 });
+function displayGame(game){
+    let infGame = document.getElementById("infGame");
+
+    const p = document.createElement("p");
+    p.textContent = `Game ${game.id} is ${game.state}`;
+    infGame.appendChild(p);
+}
+
+function displayError(error){
+    let infGame = document.getElementById("infGame");
+    const p = document.createElement("p");
+    p.textContent = " The game could not be loaded";
+    console.log("There was an error", error);
+}
+
 
 
